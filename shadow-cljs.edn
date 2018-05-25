@@ -1,23 +1,25 @@
 {:source-paths ["src"]
- :dependencies [[proto-repl "0.3.1"]]
+ :dependencies [[proto-repl "0.3.1"]
+                [org.clojure/core.async "0.4.474"]
+                [cljs-ajax "0.7.3"]]
  :nrepl {:port 3333}
  :builds
- {:app  {:target     :browser
-         :output-dir "public/js"
-         :asset-path "js"
-         :modules {:main {:entries [app.core]}
-                   :devtools {:before-load app.core/stop
-                              :after-load app.core/start
-                              :http-root "public"
-                              :http-port 8020}}}}
  {:lib {:target     :node-library
         :output-dir "public/lib"
         :output-to "public/lib/library.js"
         :compiler-options {:pretty-print true}
-        :exports {:hello lib.core/hello}}}}
+        :exports {:vintages census.discovery/vintages}}}}
         ; :exports lib.core/hello}}} ;; single export format
-        ; :modules {:main {:entries [lib.core]}}}}}
-        ;           :devtools {:before-load lib.core/stop
-        ;                      :after-load lib.core/start}}}}}
+        ; :modules {:main {:entries [census.discovery]}
+        ;           :devtools {:before-load census.discovery/stop
+        ;                      :after-load census.discovery/start}}}}}
+ ;  :app  {:target     :browser
+ ;         :output-dir "public/js"
+ ;         :asset-path "js"
+ ;         :modules {:main {:entries [app.core]}
+ ;                   :devtools {:before-load app.core/stop
+ ;                              :after-load app.core/start
+ ;                              :http-root "public"
+ ;                              :http-port 8020}}}}
 
 ; see command line commands: https://shadow-cljs.github.io/docs/UsersGuide.html#_command_line
